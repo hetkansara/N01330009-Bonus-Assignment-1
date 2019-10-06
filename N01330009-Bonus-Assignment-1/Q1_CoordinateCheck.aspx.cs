@@ -11,10 +11,6 @@ namespace N01330009_Bonus_Assignment_1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            top_left_co_ordinates_container.Attributes["class"] = "top-left-co-ordinates-container";
-            top_right_co_ordinates_container.Attributes["class"] = "top-right-co-ordinates-container";
-            bottom_left_co_ordinates_container.Attributes["class"] = "bottom-left-co-ordinates-container";
-            bottom_right_co_ordinates_container.Attributes["class"] = "bottom-right-co-ordinates-container";
 
             if (Page.IsPostBack)
             {
@@ -81,6 +77,19 @@ namespace N01330009_Bonus_Assignment_1
                     quadrants_container.InnerHtml = "";
                 }
             }
+        }
+
+        protected void valAxisValue(object source, ServerValidateEventArgs args)
+        {
+            if (Convert.ToInt32(args.Value) == 0)
+            {
+                args.IsValid = false;
+            } else
+            {
+                args.IsValid = true;
+            }
+                
+            //args.IsValid = false;
         }
     }
 }

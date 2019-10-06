@@ -96,7 +96,7 @@
             }
 
             .active-quadrant {
-                background-color: tomato;
+                background-color: #039be5;
             }
 
             input {
@@ -118,7 +118,7 @@
                 width: 50%;
                 height: 200px;
                 border: 1px solid lightgrey;
-                min-height: 260px;
+                min-height: 280px;
             }
 
             .quadrants-container {
@@ -163,7 +163,20 @@
                     <div>
                         <input type="submit" value="Submit" />
                     </div>
+                    <section>
+                        <asp:CustomValidator runat="server" 
+                            ControlToValidate="x_coordinate_input" 
+                            ErrorMessage="X-Axis value can not be zero." OnServerValidate="valAxisValue">
 
+                        </asp:CustomValidator>
+                    </section>
+                    <section>
+                        <asp:CustomValidator runat="server" 
+                            ControlToValidate="y_coordinate_input" 
+                            ErrorMessage="Y-Axis value can not be zero." OnServerValidate="valAxisValue">
+
+                        </asp:CustomValidator>
+                    </section>
                     <section>
                         <asp:RegularExpressionValidator runat="server" EnableClientScript="true" ControlToValidate="x_coordinate_input" ValidationExpression="^-?[0-9]*\.?[0-9]+$"
                             ErrorMessage="Please enter valid X co-ordinate value."></asp:RegularExpressionValidator>
