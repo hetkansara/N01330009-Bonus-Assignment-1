@@ -7,9 +7,16 @@
     <head runat="server">
         <title></title>
         <style>
-            /* https://css-tricks.com/snippets/css/css-triangle/ */
-
-            /* https://fonts.google.com/?selection.family=Merriweather+Sans */
+            /* 
+                Date: 5th Oct, 2019
+                Resources: https://css-tricks.com/snippets/css/css-triangle/ 
+                Used extenral library to display arrows of the axis and mannualy set the position of all arrow triangles.
+            */
+            /* 
+                Date: 5th Oct 2019
+                Resources: https://fonts.google.com/?selection.family=Merriweather+Sans 
+                Google Fonts - Custom fonts Library
+            */
 
             @import url('https://fonts.googleapis.com/css?family=Merriweather+Sans&display=swap');
 
@@ -18,6 +25,7 @@
                 box-sizing: border-box;
             }
 
+            /* Positioning all arrows */
             .arrow-up {
                 width: 0;
                 height: 0;
@@ -136,6 +144,22 @@
             .co-ordinates-form {
                 padding-left: 10px;
             }
+
+            .x-axis-text {
+                position: absolute;
+                margin-left: 220px;
+                font-size: 0.8em;
+                font-style: italic;
+                margin-top: 90px;
+            }
+
+            .y-axis-text {
+                position: absolute;
+                margin-left: 80px;
+                font-size: 0.8em;
+                font-style: italic;
+                margin-top: -30px;
+            }
         </style>
     </head>
 
@@ -145,39 +169,34 @@
                 <p class="title-text">Enter your co-ordinates here</p>
                 <section class="co-ordinates-form">
                     <label>(X: </label>
-                    <!-- 
-                        - Regex taken from https://stackoverflow.com/questions/33939770/regex-for-decimal-number-validation-in-c-sharp
-                        - Checks negative & positive decimal numbers
-                        - Date: 5th Oct, 2019
-                    -->
                     <asp:TextBox ID="x_coordinate_input" runat="server"></asp:TextBox>
-
                     <label>, Y: </label>
-                    <!-- 
-                        - Regex taken from https://stackoverflow.com/questions/33939770/regex-for-decimal-number-validation-in-c-sharp
-                        - Checks negative & positive decimal numbers
-                        - Date: 5th Oct, 2019
-                    -->
                     <asp:TextBox ID="y_coordinate_input" runat="server"></asp:TextBox>
                     <label>)</label>
                     <div>
                         <input type="submit" value="Submit" />
                     </div>
                     <section>
+                        <!-- Validate X-Axis for non-zero value -->
                         <asp:CustomValidator runat="server" 
                             ControlToValidate="x_coordinate_input" 
-                            ErrorMessage="X-Axis value can not be zero." OnServerValidate="valAxisValue">
-
+                            ErrorMessage="X-Axis value can not be zero." OnServerValidate="validateAxisValue">
                         </asp:CustomValidator>
                     </section>
                     <section>
+                        <!-- Validate Y-Axis for non-zero value -->
                         <asp:CustomValidator runat="server" 
                             ControlToValidate="y_coordinate_input" 
-                            ErrorMessage="Y-Axis value can not be zero." OnServerValidate="valAxisValue">
+                            ErrorMessage="Y-Axis value can not be zero." OnServerValidate="validateAxisValue">
 
                         </asp:CustomValidator>
                     </section>
                     <section>
+                        <!-- 
+                            - Regex taken from https://stackoverflow.com/questions/33939770/regex-for-decimal-number-validation-in-c-sharp
+                            - Checks negative & positive decimal numbers
+                            - Date: 5th Oct, 2019
+                        -->
                         <asp:RegularExpressionValidator runat="server" EnableClientScript="true" ControlToValidate="x_coordinate_input" ValidationExpression="^-?[0-9]*\.?[0-9]+$"
                             ErrorMessage="Please enter valid X co-ordinate value."></asp:RegularExpressionValidator>
                     </section>
@@ -185,6 +204,11 @@
                         <asp:RequiredFieldValidator runat="server" EnableClientScript="true" ErrorMessage="Please enter X co-ordinate value." ControlToValidate="x_coordinate_input"></asp:RequiredFieldValidator>
                     </section>
                     <section>
+                        <!-- 
+                            - Regex taken from https://stackoverflow.com/questions/33939770/regex-for-decimal-number-validation-in-c-sharp
+                            - Checks negative & positive decimal numbers
+                            - Date: 5th Oct, 2019
+                        -->
                         <asp:RegularExpressionValidator runat="server" EnableClientScript="true" ControlToValidate="y_coordinate_input" ValidationExpression="^-?[0-9]*\.?[0-9]+$"
                             ErrorMessage="Please enter valid Y co-ordinate 
                     value."></asp:RegularExpressionValidator>
@@ -192,11 +216,9 @@
                     <section>
                         <asp:RequiredFieldValidator runat="server" EnableClientScript="true" ErrorMessage="Please enter Y co-ordinate value." ControlToValidate="y_coordinate_input"></asp:RequiredFieldValidator>
                     </section>
-
-                    <!-- <div>
-                        <asp:ValidationSummary runat="server" ShowSummary="true" />
-                    </div> -->
                 </section>
+
+                <!-- Axis Graph -->
                 <div class="co-ordinates-chart">
                     <div class="arrow-up"></div>
                     <div id="top_left_co_ordinates_container" class="top-left-co-ordinates-container" runat="server"></div>
@@ -206,6 +228,8 @@
                     <div id="bottom_left_co_ordinates_container" class="bottom-left-co-ordinates-container" runat="server"></div>
                     <div id="bottom_right_co_ordinates_container" class="bottom-right-co-ordinates-container" runat="server"></div>
                     <div class="arrow-down"></div>
+                    <p class="x-axis-text">X-Axis</p>
+                    <p class="y-axis-text">Y-Axis</p>
                 </div>
                 <section class="quadrants-container" id="quadrants_container" runat="server">
 

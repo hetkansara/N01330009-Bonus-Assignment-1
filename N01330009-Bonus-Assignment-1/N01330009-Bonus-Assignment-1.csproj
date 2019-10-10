@@ -127,6 +127,7 @@
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Q1_CoordinateCheck.aspx" />
     <Content Include="Q2_WeeklyCalendar.aspx" />
+    <Content Include="Q3_RaffleBundle.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -202,6 +203,13 @@
     </Compile>
     <Compile Include="Q2_WeeklyCalendar.aspx.designer.cs">
       <DependentUpon>Q2_WeeklyCalendar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Q3_RaffleBundle.aspx.cs">
+      <DependentUpon>Q3_RaffleBundle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Q3_RaffleBundle.aspx.designer.cs">
+      <DependentUpon>Q3_RaffleBundle.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

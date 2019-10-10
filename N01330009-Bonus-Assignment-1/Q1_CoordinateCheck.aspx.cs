@@ -12,14 +12,13 @@ namespace N01330009_Bonus_Assignment_1
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (Page.IsPostBack)
-            {
+            if (Page.IsPostBack) {
                 // Validate X & Y Co-ordinate values.
                 Page.Validate();
                 
                 //If everything seems okay, we can proceed.
-                if (Page.IsValid)
-                {
+                if (Page.IsValid) {
+                    //Set default class for all quadrant containers in axis-graph.
                     top_left_co_ordinates_container.Attributes["class"] = "top-left-co-ordinates-container";
                     top_right_co_ordinates_container.Attributes["class"] = "top-right-co-ordinates-container";
                     bottom_left_co_ordinates_container.Attributes["class"] = "bottom-left-co-ordinates-container";
@@ -30,21 +29,24 @@ namespace N01330009_Bonus_Assignment_1
                     string current_quadrant;
                     string quadrant_text = "";
 
-                    if(y_coordinate_value > 0) {
+                    // If Y-Axis > 0, Co-ordinates are in one of the upper Quadrant (Quadrant - 1 OR Quadrant -2)
+                    if (y_coordinate_value > 0) {
                         current_quadrant = "top";
                     } else {
                         current_quadrant = "bottom";
                     }
 
-                    if(x_coordinate_value > 0) {
+                    // If X-Axis > 0, Co-ordinates are on the Right. Else, Left!
+                    if (x_coordinate_value > 0) {
                         current_quadrant += "-right";
                     } else {
                         current_quadrant += "-left";
                     }
 
+                    // Finally, We got our class of current Quadrant in valiable 'current_quadrant'.
 
-                    switch (current_quadrant)
-                    {
+                    //Generate Graph & Display Quadrant text.
+                    switch (current_quadrant) {
                         case "top-left":
                             quadrant_text = "Quadrant II";
                             top_left_co_ordinates_container.Attributes["class"] += " active-quadrant";
@@ -66,7 +68,7 @@ namespace N01330009_Bonus_Assignment_1
                             bottom_right_co_ordinates_container.InnerHtml = quadrant_text;
                             break;
                         default:
-                            // Console.WriteLine("Default case");
+                            // No default case for now.
                             break;
                     }
 
@@ -79,7 +81,8 @@ namespace N01330009_Bonus_Assignment_1
             }
         }
 
-        protected void valAxisValue(object source, ServerValidateEventArgs args)
+        // Custom validator for checking X-Axis & Y-Axis non-zero values
+        protected void validateAxisValue(object source, ServerValidateEventArgs args)
         {
             if (Convert.ToInt32(args.Value) == 0)
             {
@@ -88,8 +91,6 @@ namespace N01330009_Bonus_Assignment_1
             {
                 args.IsValid = true;
             }
-                
-            //args.IsValid = false;
         }
     }
 }

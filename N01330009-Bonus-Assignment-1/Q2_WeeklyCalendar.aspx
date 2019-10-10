@@ -6,7 +6,11 @@
 <head runat="server">
     <title></title>
     <style>
-        /* https://fonts.google.com/?selection.family=Merriweather+Sans */
+        /* 
+            Date: 6th Oct 2019
+            Resources: https://fonts.google.com/?selection.family=Merriweather+Sans 
+            Google Fonts - Custom fonts Library
+        */
 
         @import url('https://fonts.googleapis.com/css?family=Merriweather+Sans&display=swap');
 
@@ -21,8 +25,6 @@
             align-content: center;
             width: 63.5%;
             justify-content: stretch;
-            background-color: #cfd8dc;
-            border: 1px solid #cfd8dc;
         }
         .calender-items .date-block {
             width: 120px;
@@ -34,7 +36,6 @@
             padding: 10px;
             color: white;
         }
-
         .calender-container {
             margin: 0 auto;
             width: 70%;
@@ -74,7 +75,6 @@
             padding: 10px;
             border-bottom: 1px solid lightgrey;
         }
-
         input[type=submit] {
             margin: 10px;
             border: 0px;
